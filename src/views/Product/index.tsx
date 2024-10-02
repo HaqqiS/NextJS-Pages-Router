@@ -1,12 +1,7 @@
 import React from "react";
 import styles from "./Product.module.scss";
-type ProductType = {
-    id: string;
-    name: string;
-    price: number;
-    category: string;
-    image: string;
-};
+import { ProductType } from "@/types/product.type";
+
 const ProductView = ({ products }: { products: ProductType[] }) => {
     return (
         <div className={styles.product}>
