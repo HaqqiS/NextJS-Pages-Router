@@ -5,15 +5,15 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const ProductPage = () => {
-    const [isLogin, setIsLogin] = useState(true);
+    // const [isLogin, setIsLogin] = useState(true);
     const { push } = useRouter();
     // const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        if (!isLogin) {
-            push("/auth/login");
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!isLogin) {
+    //         push("/auth/login");
+    //     }
+    // }, []);
 
     const { data, error, isLoading } = useSWR("/api/product", fatcher);
 
