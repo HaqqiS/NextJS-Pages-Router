@@ -1,3 +1,5 @@
+import { signIn } from "@/lib/firebase/service";
+import { compare } from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -13,7 +15,6 @@ const authOptions: NextAuthOptions = {
             name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "email" },
-                fullname: { label: "Fullname", type: "text" },
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
@@ -22,14 +23,14 @@ const authOptions: NextAuthOptions = {
                     fullname: string;
                     password: string;
                 };
-                const user: any = {
-                    id: 1,
-                    email: email,
-                    password: password,
-                    fullname: fullname,
-                };
+                const user: any = await signIn({ email });
+
                 if (user) {
-                    return user;
+                    const passwordConfirm = await compare(password, user.password);
+                    if (passwordConfirm) {
+                        return user;
+                    }
+                    return null;
                 } else {
                     return null;
                 }
@@ -39,8 +40,9 @@ const authOptions: NextAuthOptions = {
     callbacks: {
         jwt({ token, account, user, profile }: any) {
             if (account?.provider === "credentials") {
-                token.user = user;
+                token.email = user.email;
                 token.fullname = user.fullname;
+                token.role = user.role;
             }
             return token;
         },
@@ -51,8 +53,14 @@ const authOptions: NextAuthOptions = {
             if ("fullname" in token) {
                 session.user.fullname = token.fullname;
             }
+            if ("role" in token) {
+                session.user.role = token.role;
+            }
             return session;
         },
+    },
+    pages: {
+        signIn: "/auth/login",
     },
 };
 

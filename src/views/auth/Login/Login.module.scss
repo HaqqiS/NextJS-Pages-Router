@@ -2,11 +2,46 @@
 
 .login {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6rem;
-    min-height: 100vh;
-    gap: 1rem;
-    background-color: map-get($map: $schema, $key: primary);
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    &__error {
+        color: red;
+        margin-bottom: 0.5rem;
+    }
+    &__form {
+        width: 30%;
+        padding: 1.25rem;
+        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.3);
+        margin-bottom: 10px;
+        &__item {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            &__input {
+                padding: 10px;
+                background-color: #eee;
+                margin-top: 0.25rem;
+            }
+            &__button {
+                background-color: #000000;
+                color: #fff;
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    }
+    &__link {
+        a {
+            font-weight: bold;
+            color: blue;
+            text-decoration: underline;
+        }
+    }
 }
