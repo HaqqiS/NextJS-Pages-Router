@@ -8,3 +8,8 @@
     align-items: center;
     justify-content: space-between;
 }
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
