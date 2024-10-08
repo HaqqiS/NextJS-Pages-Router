@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import styles from "./navbar.module.css";
+import styles from "./Navbar.module.css";
 import Script from "next/script";
 import Image from "next/image";
 
