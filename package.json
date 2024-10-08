@@ -6,7 +6,10 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "test": "jest",
+        "test:cover": "npm run test -- --coverage",
+        "test:watch": "jest --watch"
     },
     "dependencies": {
         "@types/node": "22.5.4",
@@ -24,8 +27,13 @@
         "typescript": "5.5.4"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^6.5.0",
+        "@testing-library/react": "^16.0.1",
         "@types/bcrypt": "^5.0.2",
+        "@types/jest": "^29.5.13",
         "autoprefixer": "^10.4.20",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
         "postcss": "^8.4.47",
         "sass": "^1.79.4",
         "tailwindcss": "^3.4.13"
